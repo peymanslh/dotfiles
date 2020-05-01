@@ -1,0 +1,4 @@
+# global git ignore
+.vscode/
+.venv/
+
