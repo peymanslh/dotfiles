@@ -82,6 +82,9 @@ set backspace=indent,eol,start " Fix backspace in macos
 " set shell=sh " UnComment for fish shell
 nnoremap <space> za
 
+" use ctrl-p to open fzf
+map <C-p> :FZF<CR>
+
 " Ale config
 let g:ale_completion_enabled = 1
 let g:ale_linters = {
