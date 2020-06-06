@@ -23,7 +23,7 @@ set $menu dmenu_path | bemenu-run -H 30 --fn "Source Code Pro Regular 12" --hf "
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/peyman/Pictures/pink-floyd-concert.jpg fill
+output * bg /home/peyman/Pictures/fabio-alves-djAM7oRJ58M-unsplash.jpg fill
 output 'Apple Computer Inc Color LCD 0x00000000' mode 1980x1050
 output 'Apple Computer Inc Color LCD 0x00000000' scale 1.3
 #
@@ -258,11 +258,10 @@ bindsym ctrl+alt+l exec swaylock -c 3d3d3d
 exec --no-startup-id dropbox start
 
 
-
 # remove titlebar
 default_border pixel 2
 
 # gaps settngs
 smart_gaps on
-gaps outer 1
-gaps inner 3
+gaps outer 2
+gaps inner 2

@@ -62,3 +62,7 @@ export PATH=$PATH:$HOME/.cargo/bin
 # colorize man pages
 # install most: dnf install most
 export PAGER="most"
+
+# ENVs
+alias ssh="TERM=xterm-256color ssh"
+alias grep="grep --color=auto"
