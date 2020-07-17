@@ -1,3 +1,4 @@
+
 " To use fzf: apt-get install fzf
 " Run :GoUpdateBinaries for vim-go after installation
 " Use :Goyo for direction-free writing

@@ -1,3 +1,4 @@
+
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -23,7 +24,7 @@ set $menu dmenu_path | bemenu-run -H 30 --fn "Source Code Pro Regular 12" --hf "
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/peyman/Pictures/fabio-alves-djAM7oRJ58M-unsplash.jpg fill
+output * bg /home/peyman/Pictures/andrew-hutchings-_3jdlmz-1hw-unsplash.jpg fill
 output 'Apple Computer Inc Color LCD 0x00000000' mode 1980x1050
 output 'Apple Computer Inc Color LCD 0x00000000' scale 1.3
 #
@@ -216,6 +217,7 @@ bindsym $mod+r mode "resize"
 #         inactive_workspace #32323200 #32323200 #5c5c5c
 #     }
 # }
+
 bar {
     swaybar_command waybar
 }
@@ -236,6 +238,10 @@ input "1452:601:Apple_Inc._Apple_Internal_Keyboard_/_Trackpad" {
     xkb_options grp:alt_shift_toggle
 }
 
+input "1266:1026:Chicony_USB_Keyboard" {
+    xkb_layout us,ir
+    xkb_options grp:alt_shift_toggle
+}
 
 bindsym --locked XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') +5%
 bindsym --locked XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pacmd list-sinks |awk '/* index:/{print $3}') -5%
@@ -251,17 +257,20 @@ bindsym --locked XF86MonBrightnessDown exec --no-startup-id light -U 10
 bindsym --locked XF86KbdBrightnessUp exec --no-startup-id light -s sysfs/leds/smc::kbd_backlight -A 10
 bindsym --locked XF86KbdBrightnessDown exec --no-startup-id light -s sysfs/leds/smc::kbd_backlight -U 10
 
+bindsym ctrl+alt+p exec grim -t jpeg ~/Pictures/$(date +%Y-%m-%d_%H-%m-%s).jpg
 
 # Lock screen
 bindsym ctrl+alt+l exec swaylock -c 3d3d3d
 
 exec --no-startup-id dropbox start
 
+# run gnome-keyring-daemon
+exec --no-startup-id /home/peyman/.config/sway/run_ssh_agent.sh
+
 
 # remove titlebar
 default_border pixel 2
 
 # gaps settngs
-smart_gaps on
-gaps outer 2
-gaps inner 2
+gaps outer 8
+gaps inner 8

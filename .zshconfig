@@ -1,0 +1,46 @@
+#
+# Install zinit: https://github.com/zdharma/zinit
+# 
+#
+# Add this to .zshrc
+# source ~/.zshconfig
+
+# ZSH history config
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTCONTROL=ignoredups:ignorespace
+
+zinit ice pick"async.zsh" src"pure.zsh"
+zinit light sindresorhus/pure
+
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma/fast-syntax-highlighting
+
+zinit load zdharma/history-search-multi-word
+
+zinit load zsh-users/zsh-completions
+
+
+# Go lang
+export GOPATH=$HOME/Development/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin:$GOBIN
+
+export PATH=$PATH:$HOME/.local/bin
+
+export PATH=$PATH:$HOME/.cargo/bin
+
+# colorize man pages
+# install most: dnf install most
+# export PAGER="most"
+
+# ENVs
+alias ssh="TERM=xterm-256color ssh"
+alias grep="grep --color=auto"
+
+# Use vim as default editor
+export EDITOR=vim
+
+# Open gnome file manager with open in terminal
+alias open="nautilus"
