@@ -1,14 +1,16 @@
-
-" To use fzf: apt-get install fzf
-" Run :GoUpdateBinaries for vim-go after installation
-" Use :Goyo for direction-free writing
-
 set encoding=utf-8
-set number " Display line numbers on the left side
 set ls=2 " This makes Vim show a status line even when only one window is shown
 filetype plugin on " This line enables loading the plugin files for specific file types
 set tabstop=4 " Set tabstop to tell vim how many columns a tab counts for. Linux kernel code expects each tab to be eight columns wide
 set expandtab " When expandtab is set, hitting Tab in insert mode will produce the appropriate number of spaces
+
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+augroup END
 
 " Set softtabstop to control how many columns vim uses when you hit Tab in
 " insert mode. If softtabstop is le
@@ -33,7 +35,7 @@ set clipboard=unnamed
 set clipboard=unnamedplus
 
 set autoindent " Automatic indentation
-set cursorline " highlight current line
+" set cursorline " highlight current line
 set cindent " This turns on C style indentation
 set si " Smart indent
 syntax enable " syntax highlighting
@@ -63,14 +65,6 @@ set foldlevel=99
 "set termguicolors
 set t_Co=256 " makes Vim use 256 colors
 set background=dark " or light
-" theme: https://github.com/sainnhe/gruvbox-material
-let g:gruvbox_material_background = 'medium'
-let g:gruvbox_material_palette = 'mix'
-colorscheme gruvbox-material
-
-" lightline
-let g:lightline = {}
-let g:lightline.colorscheme = 'gruvbox_material'
 
 " netrw config
 let g:netrw_banner = 0
@@ -82,16 +76,3 @@ let g:netrw_winsize = 20
 set backspace=indent,eol,start " Fix backspace in macos
 " set shell=sh " UnComment for fish shell
 nnoremap <space> za
-
-" use ctrl-p to open fzf
-map <C-p> :FZF<CR>
-
-" Ale config
-let g:ale_completion_enabled = 1
-let g:ale_linters = {
-        \ 'go': ['gopls'],
-        \}
-
-" vim-go config
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'

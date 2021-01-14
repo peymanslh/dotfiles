@@ -1,26 +1,6 @@
-#
-# Install zinit: https://github.com/zdharma/zinit
-# 
-#
-# Add this to .zshrc
+# install zinit: https://github.com/zdharma/zinit
+# then call this file in .zshrc
 # source ~/.zshconfig
-
-# ZSH history config
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-HISTCONTROL=ignoredups:ignorespace
-
-zinit ice pick"async.zsh" src"pure.zsh"
-zinit light sindresorhus/pure
-
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma/fast-syntax-highlighting
-
-zinit load zdharma/history-search-multi-word
-
-zinit load zsh-users/zsh-completions
-
 
 # Go lang
 export GOPATH=$HOME/Development/go
@@ -31,9 +11,6 @@ export PATH=$PATH:$HOME/.local/bin
 
 export PATH=$PATH:$HOME/.cargo/bin
 
-# colorize man pages
-# install most: dnf install most
-# export PAGER="most"
 
 # ENVs
 alias ssh="TERM=xterm-256color ssh"
@@ -41,6 +18,50 @@ alias grep="grep --color=auto"
 
 # Use vim as default editor
 export EDITOR=vim
+export PAGER=less
 
 # Open gnome file manager with open in terminal
 alias open="nautilus"
+
+# ZSH history config
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTCONTROL=ignoredups:ignorespace
+
+zinit ice pick"async.zsh" src"pure.zsh"
+zinit light sindresorhus/pure
+
+zinit load zsh-users/zsh-completions
+# load completions
+autoload -Uz compinit
+compinit
+
+zinit light zsh-users/zsh-autosuggestions
+
+zinit light zdharma/fast-syntax-highlighting
+
+zinit load zdharma/history-search-multi-word
+
+zinit load zsh-users/zsh-history-substring-search
+
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+man() {
+    env \
+    LESS_TERMCAP_mb="$(printf "\e[1;31m")" \
+    LESS_TERMCAP_md="$(printf "\e[1;31m")" \
+    LESS_TERMCAP_me="$(printf "\e[0m")" \
+    LESS_TERMCAP_se="$(printf "\e[0m")" \
+    LESS_TERMCAP_so="$(printf "\e[1;44;33m")" \
+    LESS_TERMCAP_ue="$(printf "\e[0m")" \
+    LESS_TERMCAP_us="$(printf "\e[1;32m")" \
+    man "${@}"
+}
+
+# load gnome ssh agent config
+source ~/.config/sway/run_ssh_agent.sh

@@ -1,0 +1,19 @@
+{
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
+    },
+
+    "python": {
+      "command": "jedi-language-server",
+      "filetypes": ["python"]
+    }
+  },
+
+  "yaml.schemas": {
+      "kubernetes": "/*.yaml"
+  }
+
+}

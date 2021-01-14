@@ -2,6 +2,8 @@
 [user]
 	name = Peyman Salehi
 	email = peymanslh@pm.me
-# Please adapt and uncomment the following lines:
-#	name = Peyman
-#	email = peymanslh@pm.me
+	signingkey = 027629CB37ABAD00
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg

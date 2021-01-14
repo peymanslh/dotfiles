@@ -8,6 +8,7 @@
 
 window#waybar {
    background: rgba(40, 40, 40, 1);
+   background: #242938;
    color: rgb(252, 252, 252);
 }
 
@@ -26,6 +27,7 @@ window#waybar {
 
 #workspaces button.focused {
     background: rgb(80, 80, 80);
+    background: #506477;
 }
 
 #mode, #clock, #battery {
