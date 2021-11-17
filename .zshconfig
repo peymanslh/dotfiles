@@ -2,15 +2,15 @@
 # then call this file in .zshrc
 # source ~/.zshconfig
 
-# Go lang
-export GOPATH=$HOME/Development/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin:$GOBIN
-
 export PATH=$PATH:$HOME/.local/bin
-
 export PATH=$PATH:$HOME/.cargo/bin
+export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/snapd/desktop/applications
 
+# zoe/ kafka cli -> https://github.com/adevinta/zoe
+export PATH=$PATH:$HOME/.zoe/bin
+
+# appimage directory
+export PATH=$PATH:$HOME/Applications
 
 # ENVs
 alias ssh="TERM=xterm-256color ssh"
@@ -19,9 +19,6 @@ alias grep="grep --color=auto"
 # Use vim as default editor
 export EDITOR=vim
 export PAGER=less
-
-# Open gnome file manager with open in terminal
-alias open="nautilus"
 
 # ZSH history config
 HISTFILE=~/.zsh_history
@@ -63,5 +60,16 @@ man() {
     man "${@}"
 }
 
-# load gnome ssh agent config
-source ~/.config/sway/run_ssh_agent.sh
+alias c='clear'
+alias k='kubectl'
+alias nvim='nvim.appimage'
+
+alias vpn='expressvpn'
+alias vpnc='expressvpn connect'
+alias vpnd='expressvpn disconnect'
+alias vpns='expressvpn status'
+
+source <(kubectl completion zsh)
+complete -F __start_kubectl k
+
+export BAT_CONFIG_PATH=/home/peyman/.config/bat/config
