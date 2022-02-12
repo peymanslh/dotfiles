@@ -53,6 +53,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'nvim-lua/completion-nvim'
+
+Plug 'puremourning/vimspector'
 call plug#end()
 
 
@@ -227,6 +229,10 @@ vnoremap <silent> ca :<C-U>lua require('lspsaga.codeaction').range_code_action()
 nnoremap <silent> gp <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
 
 nnoremap <silent>gr <cmd>lua require('lspsaga.rename').rename()<CR>
+
+" vim insprctor
+packadd! vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
 
 " Import LSP config lua file
 luafile ~/.config/nvim/lua-conf.lua

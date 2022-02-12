@@ -45,6 +45,19 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+nvim_lsp.ccls.setup {
+  init_options = {
+    compilationDatabaseDirectory = "build";
+    index = {
+      threads = 0;
+    };
+    clang = {
+      excludeArgs = { "-frounding-math"} ;
+    };
+  }
+}
+
+
 
 local saga = require('lspsaga')
 saga.init_lsp_saga {
