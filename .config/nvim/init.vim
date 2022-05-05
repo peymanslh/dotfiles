@@ -1,7 +1,6 @@
-
+ 
 " Requirements
 " Install python3
-" Install jedi lsp > pip install jedi-language-server
 " Install Go
 " Install Node.js
 " Install vim-plug
@@ -41,20 +40,28 @@ Plug 'wakatime/vim-wakatime'
 Plug 'metakirby5/codi.vim'
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
 
-Plug 'morhetz/gruvbox'
-Plug 'arcticicestudio/nord-vim'
-Plug 'wadackel/vim-dogrun'
+"Plug 'morhetz/gruvbox'
+"Plug 'arcticicestudio/nord-vim'
+"Plug 'wadackel/vim-dogrun'
+Plug 'widatama/vim-phoenix'
 
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" nvim > 0.5.0
+" nvim > 0.8.0
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip'
 Plug 'glepnir/lspsaga.nvim'
-Plug 'nvim-lua/completion-nvim'
 
-Plug 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 call plug#end()
 
 
@@ -64,8 +71,6 @@ call plug#end()
 set encoding=utf-8
 set ls=2 " This makes Vim show a status line even when only one window is shown
 filetype plugin on " This line enables loading the plugin files for specific file types
-set tabstop=4 " Set tabstop to tell vim how many columns a tab counts for. Linux kernel code expects each tab to be eight columns wide
-set expandtab " When expandtab is set, hitting Tab in insert mode will produce the appropriate number of spaces
 
 set number relativenumber
 
@@ -82,12 +87,15 @@ augroup END
 " ed spacing. If softtabstop equals tabstop and expandtab is not set, vim will
 " always use tabs. When expandtab
 "  is set, vim will always use the appropriate number of spaces.
-set softtabstop=4
+set softtabstop=2
 
 " Set shiftwidth to control how many columns text is indented with the
 " reindent operations (<< and >>) and a
 " utomatic C-style indentation
-set shiftwidth=4
+set shiftwidth=2
+
+set tabstop=2 " Set tabstop to tell vim how many columns a tab counts for. Linux kernel code expects each tab to be eight columns wide
+set expandtab " When expandtab is set, hitting Tab in insert mode will produce the appropriate number of spaces
 
 set nowrap " Don't Wrap lines!
 set nocp
@@ -156,15 +164,15 @@ endif
 "set t_Co=256 " makes Vim use 256 colors
 set background=dark " or light
 
-let g:gruvbox_italic = 1
-"colorscheme gruvbox
-colorscheme dogrun
+" let g:gruvbox_italic = 1
+colorscheme phoenix
+PhoenixRed
 
 highlight Comment cterm=italic gui=italic
 
 " lightline
+" \ 'colorscheme': 'dogrun',
 let g:lightline = {
-    \ 'colorscheme': 'dogrun',
     \ 'active': {
     \   'left': [
     \     [ 'mode', 'paste' ],
@@ -192,47 +200,23 @@ map <C-p> :Files <CR>
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 
-" Jedi-vim
-let g:jedi#environment_path = "/usr/local/bin/python3.9"
-let g:jedi#environment_path = ".venv"
-
 " ale - use it with coc
 let g:ale_disable_lsp = 1
 
 " set python path
-let g:python3_host_prog = expand("/usr/local/bin/python3.9")
-
-" Use completion-nvim in every buffer
-autocmd BufEnter * lua require'completion'.on_attach()
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
-
-" Avoid showing message extra message when using completion
-set shortmess+=c
+let g:python3_host_prog = expand("/usr/bin/python")
 
 " saga lsp
 " show hover doc
-nnoremap <silent>K :Lspsaga hover_doc<CR>
-nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
-nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
-
-inoremap <silent> <C-k> <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
-
-nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
-nnoremap <silent> ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
-vnoremap <silent> ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
-
-nnoremap <silent> gp <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
-
-nnoremap <silent>gr <cmd>lua require('lspsaga.rename').rename()<CR>
-
-" vim insprctor
-packadd! vimspector
-let g:vimspector_enable_mappings = 'HUMAN'
+" nnoremap <silent>K :Lspsaga hover_doc<CR>
+" nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+" nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+" inoremap <silent> <C-k> <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
+" nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
+" nnoremap <silent> ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
+" vnoremap <silent> ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
+" nnoremap <silent> gp <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
+" nnoremap <silent>gr <cmd>lua require('lspsaga.rename').rename()<CR>
 
 " Import LSP config lua file
 luafile ~/.config/nvim/lua-conf.lua

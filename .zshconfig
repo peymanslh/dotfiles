@@ -3,11 +3,8 @@
 # source ~/.zshconfig
 
 export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:$HOME/.cargo/bin
-export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/snapd/desktop/applications
 
 # zoe/ kafka cli -> https://github.com/adevinta/zoe
-export PATH=$PATH:$HOME/.zoe/bin
 
 # appimage directory
 export PATH=$PATH:$HOME/Applications
@@ -26,21 +23,21 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTCONTROL=ignoredups:ignorespace
 
-zinit ice pick"async.zsh" src"pure.zsh"
-zinit light sindresorhus/pure
+zi ice pick"async.zsh" src"pure.zsh"
+zi light sindresorhus/pure
 
-zinit load zsh-users/zsh-completions
+zi load zsh-users/zsh-completions
 # load completions
 autoload -Uz compinit
 compinit
 
-zinit light zsh-users/zsh-autosuggestions
+zi light zsh-users/zsh-autosuggestions
 
-zinit light zdharma/fast-syntax-highlighting
+zi light zdharma/fast-syntax-highlighting
 
-zinit load zdharma/history-search-multi-word
+zi load zdharma/history-search-multi-word
 
-zinit load zsh-users/zsh-history-substring-search
+zi load zsh-users/zsh-history-substring-search
 
 
 bindkey '^[[A' history-substring-search-up
@@ -61,15 +58,13 @@ man() {
 }
 
 alias c='clear'
-alias k='kubectl'
-alias nvim='nvim.appimage'
 
 alias vpn='expressvpn'
 alias vpnc='expressvpn connect'
 alias vpnd='expressvpn disconnect'
 alias vpns='expressvpn status'
 
-source <(kubectl completion zsh)
-complete -F __start_kubectl k
+# source <(kubectl completion zsh)
+# complete -F __start_kubectl k
 
 export BAT_CONFIG_PATH=/home/peyman/.config/bat/config
