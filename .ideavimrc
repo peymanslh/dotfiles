@@ -1,0 +1,38 @@
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+augroup END
+
+" This changes the values of a LOT of options, enabling features which are not
+" Vi compatible but really really nice
+set clipboard=unnamed
+set clipboard=unnamedplus
+set clipboard+=ideaput
+
+set autoindent " Automatic indentation
+" set cursorline " highlight current line
+set cindent " This turns on C style indentation
+set si " Smart indent
+set showmatch " Show matching brackets
+set hlsearch " Highlight in search, use :noh to disable
+
+" disble arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" set ignorecase " Ignore case in search
+
+set scrolloff=10
+set foldmethod=indent
+set foldlevel=99
+
+""" Plugins  --------------------------------
+set surround
+set highlightedyank

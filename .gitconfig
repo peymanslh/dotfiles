@@ -1,11 +1,13 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Peyman Salehi
-	email = peymanslh@pm.me
-	signingkey = 027629CB37ABAD00
+	email = slh.peyman@gmail.com
+  signingkey = 40DC0474A6659D4472497613FBAAD5BDF4257A0C
 [commit]
 	gpgsign = true
 [gpg]
 	program = gpg
-[pull]
-	rebase = true
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = /home/peyman/.gitignore

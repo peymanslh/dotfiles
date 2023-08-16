@@ -1,35 +1,38 @@
-# install zinit: https://github.com/zdharma/zinit
-# then call this file in .zshrc
-# source ~/.zshconfig
+# Install zsh
+# Install zinit
+# source this file in .zshrc
+
+fpath+=~/.zfunc
 
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:/usr/local/bin
 
-# zoe/ kafka cli -> https://github.com/adevinta/zoe
+export GOMODCACHE=/home/peyman/Dev/go/pkg/mod
+export GOPATH=/home/peyman/Dev/go
+
+export PATH=$PATH:$HOME/Dev/go/bin
 
 # appimage directory
-export PATH=$PATH:$HOME/Applications
+export PATH=$PATH:$HOME/AppImages
 
 # ENVs
 alias ssh="TERM=xterm-256color ssh"
 alias grep="grep --color=auto"
+alias python="python3.11"
 
 # Use vim as default editor
 export EDITOR=vim
-export PAGER=less
 
 # ZSH history config
-HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 HISTCONTROL=ignoredups:ignorespace
 
-zi ice pick"async.zsh" src"pure.zsh"
-zi light sindresorhus/pure
+# Load powerlevel10k theme
+zinit ice depth"1" # git clone depth
+zinit light romkatv/powerlevel10k
 
 zi load zsh-users/zsh-completions
-# load completions
-autoload -Uz compinit
-compinit
 
 zi light zsh-users/zsh-autosuggestions
 
@@ -38,7 +41,6 @@ zi light zdharma/fast-syntax-highlighting
 zi load zdharma/history-search-multi-word
 
 zi load zsh-users/zsh-history-substring-search
-
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -57,14 +59,4 @@ man() {
     man "${@}"
 }
 
-alias c='clear'
-
-alias vpn='expressvpn'
-alias vpnc='expressvpn connect'
-alias vpnd='expressvpn disconnect'
-alias vpns='expressvpn status'
-
-# source <(kubectl completion zsh)
-# complete -F __start_kubectl k
-
-export BAT_CONFIG_PATH=/home/peyman/.config/bat/config
+source <(kubectl completion zsh)
