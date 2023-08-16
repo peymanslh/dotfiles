@@ -1,4 +1,4 @@
-# My Dotfiles and configurations
+# My dotfiles and configurations
 
 ## Install
 - [Zsh](https://www.zsh.org/) (Shell)
