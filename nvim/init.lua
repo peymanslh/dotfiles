@@ -1,6 +1,8 @@
 
 -- Keymaps
 
+vim.g.mapleader = " "
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -35,12 +37,15 @@ vim.g.netrw_winsize  = 20
 
 vim.opt.clipboard = 'unnamedplus'
 
-vim.g.mapleader = " "
-
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+
+vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 -- LSP
 local lsp = require('lsp-zero').preset({})
@@ -133,6 +138,7 @@ return require('packer').startup(function(use)
   use 'machakann/vim-highlightedyank'
   use 'airblade/vim-gitgutter'
   use 'airblade/vim-rooter'
+  use 'folke/zen-mode.nvim'
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
