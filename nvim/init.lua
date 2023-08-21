@@ -48,7 +48,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 -- LSP
-local lsp = require('lsp-zero').preset({})
+local lsp = require('lsp-zero').preset("recommended")
 
 lsp.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
@@ -58,16 +58,30 @@ end)
 
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-lsp.setup()
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
 	['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
 	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-	['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  ['<CR>'] = cmp.mapping({
+     i = function(fallback)
+       if cmp.visible() and cmp.get_active_entry() then
+         cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+       else
+         fallback()
+       end
+     end,
+     s = cmp.mapping.confirm({ select = true }),
+     c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+   }),
 	['<C-Space>'] = cmp.mapping.complete(),
 })
+lsp.setup_nvim_cmp({
+  mapping = cmp_mappings
+})
+
+lsp.setup()
 
 -- Treesitter
 require'nvim-treesitter.configs'.setup {
@@ -167,5 +181,3 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
-
-
