@@ -9,3 +9,6 @@ ln -s ~/.dotfiles/.ideavimrc ~/.ideavimrc
 
 # mkdir ~/.config/nvim
 ln -s ~/.dotfiles/nvim/init.lua ~/.config/nvim/init.lua
+
+
+ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf

@@ -114,15 +114,15 @@ require('onedark').load()
 
 -- Telescope
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<leader>ff', builtin.git_files, {})
 vim.keymap.set('n', '<leader>gr', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
 
 -- lualine
 require('lualine').setup {
-  options = { icons_enabled = false },
+  options = { icons_enabled = true },
 }
 
 -- Packer
@@ -153,6 +153,8 @@ return require('packer').startup(function(use)
   use 'airblade/vim-gitgutter'
   use 'airblade/vim-rooter'
   use 'folke/zen-mode.nvim'
+
+  use 'christoomey/vim-tmux-navigator'
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
